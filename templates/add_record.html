@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='edit_style.css') }}">{% endblock %}
+{% block title %}Edit Value{% endblock %}
+{% block body %}
+
+<form method="POST" class="main">
+    <fieldset>
+        <legend class="col-form-label-bg">Add Record to {{table}}</legend>
+        {% if table == "orders" %}
+            <label for="clientID">Client ID: </label>
+            <input type="number" name="clientID" id="clientID" required class="form-control"><br>
+            <label for="castleID">Castle ID: </label>
+            <input type="number" name="castleID" id="castleID" required class="form-control"><br>
+            <label for="staffID">Staff ID: </label>
+            <input type="number" name="staffID" id="staffID" required class="form-control"><br>
+            <label for="locationID">Location ID: </label>
+            <input type="number" name="locationID" id="locationID" required class="form-control"><br>
+            <label for="paymentID">Payment ID: </label>
+            <input type="number" id="paymentID" name="paymentID" required class="form-control"><br>
+            <label for="daysrenting"> Days Renting Castle: </label>
+            <input id="daysrenting" name="daysrenting" type="number" required class="form-control"><br>
+
+        {% elif table == "client" %}
+            <label for="fname">First Name: </label>
+            <input type="text" id="fname" name="fname" required class="form-control"><br>
+            <label for="lname">Last Name: </label>
+            <input type="text" id="lname" name="lname" required class="form-control"><br>
+            <label for="age">Age: </label>
+            <input type="number" id="age" name="age" required class="form-control"><br>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" required class="form-control"><br>
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" required class="form-control"><br>
+            <label for="housenumber">House Number: </label>
+            <input type="number" id="housenumber" name="housenumber" required class="form-control"><br>
+            <label for="streetname">Street Name: </label>
+            <input type="text" id="streetname" name="streetname" required class="form-control"><br>
+            <label for="city">City: </label>
+            <input type="text" id="city" name="city" required class="form-control"><br>
+            <label for="postcode">Postcode: </label>
+            <input type="text" id="postcode" name="postcode" required class="form-control"><br>
+
+        {% elif table == "staff" %}
+            <label for="fname">First Name: </label>
+            <input type="text" id="fname" name="fname" required class="form-control"><br>
+            <label for="lname">Last Name: </label>
+            <input type="text" id="lname" name="lname" required class="form-control"><br>
+            <label for="age">Age: </label>
+            <input type="number" id="age" name="age" required class="form-control"><br>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" required class="form-control"><br>
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" required class="form-control"><br>
+            <label for="housenumber">House Number: </label>
+            <input type="number" id="housenumber" name="housenumber" required class="form-control"><br>
+            <label for="streetname">Street Name: </label>
+            <input type="text" id="streetname" name="streetname" required class="form-control"><br>
+            <label for="city">City: </label>
+            <input type="text" id="city" name="city" required class="form-control"><br>
+            <label for="postcode">Postcode: </label>
+            <input type="text" id="postcode" name="postcode" required class="form-control"><br>
+            <label for="JobID">JobID: </label>
+            <input type="number" id="jobID" name="jobID" required class="form-control"><br>
+
+        {% elif table == "castles" %}
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" required class="form-control"><br>
+            <label for="make">Type: </label>
+            <input type="text" id="type" name="type"  required class="form-control"><br>
+            <label for="colour">Main Colour: </label>
+            <input type="text" id="colour" name="colour" required class="form-control"><br>
+            <label for="size">Size: </label>
+            <input type="text" id="size" name="size" required class="form-control"><br>
+            <label for="maxocc">Max Occupancy: </label>
+            <input type="number" id="maxocc" name="maxocc" min="4" max="50" required class="form-control"><br>
+            <label for="details">Details: </label>
+            <textarea id="details" name="details" maxlength="100" rows="2" required class="form-control"></textarea><br>
+            <label for="dayprice">Day Price: </label>
+            <input type="number" id="dayprice" name="dayprice" step="0.1" required class="form-control"><br>
+            <label for="locationID">Location ID: </label>
+            <input type="text" id="locationID" name="locationID" min="1" max="{{max_ids[3]}}" required class="form-control"><br>
+
+        {% elif table == "payments" %}
+            <label for="typeofpayment">Type of Payment: </label>
+            <input type="text" id="typeofpayment" name="typeofpayment" required class="form-control"><br>
+
+        {% elif table =="roles" %}
+            <label for="jobname">Job Role: </label>
+            <input type="text" id="jobname" name="jobname" required class="form-control"><br>
+            <label for="levelofaccess">Level of Access: </label>
+            <input type="number" name="levelofaccess" id="levelofaccess" required class="form-control"><br>
+
+        {% elif table== "sites" %}
+            <label for="phone">Phone Number: </label>
+            <input type="tel" id="phone" name="phone" required class="form-control"><br>
+            <label for="streetnumber">Street Number: </label>
+            <input type="text" id="streetnumber" name="streetnumber" required class="form-control"><br>
+            <label for="streetname">Street Name: </label>
+            <input type="text" id="streetname" name="streetname" required class="form-control"><br>
+            <label for="city"> City: </label>
+            <input type="text" id="city" name="city" required class="form-control"><br>
+            <label for="postcode">Postcode: </label>
+            <input type="text" id="postcode" name="postcode" required class="form-control"><br>
+        {% endif %}
+        <input type="submit" value="Add!" class="btn btn-success btn-lg btn-block">
+    </fieldset>
+</form>
+
+{% endblock %}

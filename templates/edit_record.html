@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='edit_style.css') }}">{% endblock %}
+{% block title %}Edit Value{% endblock %}
+{% block body %}
+
+<form method="POST" class="main">
+    <fieldset class="form-group">
+        <legend class="col-form-label-bg">Edit Record - {{id}} on {{table}} table</legend>
+        {% if table == "orders" %}
+            <label for="clientID">Client ID: </label>
+            <input type="number" name="clientID" id="clientID" value="{{current_values[0]}}" required class="form-control"><br>
+            <label for="castleID">Castle ID: </label>
+            <input type="number" name="castleID" id="castleID" value="{{current_values[1]}}" required class="form-control"><br>
+            <label for="staffID">Staff ID: </label>
+            <input type="number" name="staffID" id="staffID" value="{{current_values[2]}}" required class="form-control"><br>
+            <label for="locationID">Location ID: </label>
+            <input type="number" name="locationID" id="locationID" value="{{current_values[3]}}" required class="form-control"><br>
+            <label for="paymentID">Payment ID: </label>
+            <input type="number" id="paymentID" name="paymentID" value="{{current_values[4]}}" required class="form-control"><br>
+            <label for="daysrenting"> Days Renting Castle: </label>
+            <input id="daysrenting" name="daysrenting" type="number" value="{{current_values[5]}}" required class="form-control"><br>
+
+        {% elif table == "client" %}
+            <label for="fname">First Name: </label>
+            <input type="text" id="fname" name="fname" value="{{current_values[0]}}" required class="form-control"><br>
+            <label for="lname">Last Name: </label>
+            <input type="text" id="lname" name="lname" value="{{current_values[1]}}"required class="form-control"><br>
+            <label for="age">Age: </label>
+            <input type="number" id="age" name="age" value="{{current_values[2]}}" required class="form-control"><br>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" value="{{current_values[3]}}" required class="form-control"><br>
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" value="{{current_values[4]}}" required class="form-control"><br>
+            <label for="housenumber">House Number: </label>
+            <input type="number" id="housenumber" name="housenumber" value="{{current_values[5]}}" required class="form-control"><br>
+            <label for="streetname">Street Name: </label>
+            <input type="text" id="streetname" name="streetname" value="{{current_values[6]}}" required class="form-control"><br>
+            <label for="city">City: </label>
+            <input type="text" id="city" name="city" value="{{current_values[7]}}" required class="form-control"><br>
+            <label for="postcode">Postcode: </label>
+            <input type="text" id="postcode" name="postcode" value="{{current_values[8]}}" required class="form-control"><br>
+
+        {% elif table == "staff" %}
+            <label for="fname">First Name: </label>
+            <input type="text" id="fname" name="fname" value="{{current_values[0]}}" required class="form-control"><br>
+            <label for="lname">Last Name: </label>
+            <input type="text" id="lname" name="lname" value="{{current_values[1]}}"required class="form-control"><br>
+            <label for="age">Age: </label>
+            <input type="number" id="age" name="age" value="{{current_values[2]}}" required class="form-control"><br>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" value="{{current_values[3]}}" required class="form-control"><br>
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" value="{{current_values[4]}}" required class="form-control"><br>
+            <label for="housenumber">House Number: </label>
+            <input type="number" id="housenumber" name="housenumber" value="{{current_values[5]}}" required class="form-control"><br>
+            <label for="streetname">Street Name: </label>
+            <input type="text" id="streetname" name="streetname" value="{{current_values[6]}}" required class="form-control"><br>
+            <label for="city">City: </label>
+            <input type="text" id="city" name="city" value="{{current_values[7]}}" required class="form-control"><br>
+            <label for="postcode">Postcode: </label>
+            <input type="text" id="postcode" name="postcode" value="{{current_values[8]}}" required class="form-control"><br>
+            <label for="JobID">JobID: </label>
+            <input type="number" id="jobID" name="jobID" value="{{current_values[9]}}" min="1" max="{{max_ids[5]}}" required class="form-control"><br>
+
+        {% elif table == "castles" %}
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" value="{{current_values[0]}}" required class="form-control"><br>
+            <label for="make">Type: </label>
+            <input type="text" id="type" name="type" value="{{current_values[1]}}" required class="form-control"><br>
+            <label for="colour">Main Colour: </label>
+            <input type="text" id="colour" name="colour" value="{{current_values[2]}}" required class="form-control"><br>
+            <label for="size">Size: </label>
+            <input type="text" id="size" name="size" value="{{current_values[3]}}" required class="form-control"><br>
+            <label for="maxocc">Max Occupancy: </label>
+            <input type="number" id="maxocc" name="maxocc" min="4" max="50" value="{{current_values[4]}}" required class="form-control"><br>
+            <label for="details">Details: </label>
+            <textarea id="details" name="details" maxlength="100" rows="2" required class="form-control">{{current_values[5]}}</textarea><br>
+            <label for="dayprice">Day Price: </label>
+            <input type="text" id="dayprice" name="dayprice" step="0.1" value="{{current_values[6]}}" required class="form-control"><br>
+            <label for="locationID">Location ID: </label>
+            <input type="number" id="locationID" name="locationID" min="1" max="{{max_ids[3]}}" value="{{current_values[7]}}" required class="form-control"><br>
+
+        {% elif table == "payments" %}
+            <label for="typeofpayment">Type of Payment: </label>
+            <input type="text" id="typeofpayment" name="typeofpayment" value="{{current_values[0]}}" required class="form-control"><br>
+
+        {% elif table =="roles" %}
+            <label for="jobname">Job Role: </label>
+            <input type="text" id="jobname" name="jobname" value="{{current_values[0]}}" required class="form-control"><br>
+            <label for="levelofaccess">Level of Access: </label>
+            <input type="number" name="levelofaccess" id="levelofaccess" value="{{current_values[1]}}" required class="form-control"><br>
+
+        {% elif table== "sites" %}
+            <label for="phone">Phone Number: </label>
+            <input type="tel" id="phone" name="phone" value="{{current_values[0]}}" required class="form-control"><br>
+            <label for="streetnumber">Street Number: </label>
+            <input type="text" id="streetnumber" name="streetnumber" value="{{current_values[1]}}" required class="form-control"><br>
+            <label for="streetname">Street Name: </label>
+            <input type="text" id="streetname" name="streetname" value="{{current_values[2]}}" required class="form-control"><br>
+            <label for="city"> City: </label>
+            <input type="text" id="city" name="city" value="{{current_values[3]}}" required class="form-control"><br>
+            <label for="postcode">Postcode: </label>
+            <input type="text" id="postcode" name="postcode" value="{{current_values[4]}}" required class="form-control"><br>
+        {% endif %}
+        <input type="submit" value="Edit!" class="btn btn-success btn-lg btn-block">
+    </fieldset>
+</form>
+
+{% endblock %}
+
+
+

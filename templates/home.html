@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home_style.css') }}">
+{% endblock %}
+
+{% block body %}
+<h1 class="display-3">Welcome to Canty Rental Database</h1>
+<form method="POST" class="form-group">
+    <fieldset class="input-group">
+        <legend class="lead">Choose the table you would like to Enter</legend>
+            <select name="table" class="custom-select" id="inputGroupSelect03">
+                <option value="orders" selected>Orders</option>
+                <option value="client">Clients</option>
+                <option value="staff">Staff</option>
+                <option value="castles">Castles</option>
+                <option value="sites">Locations</option>
+                <option value="roles">Job Roles</option>
+                <option value="payments">Payment Methods</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-success" type="submit">View Table</button>
+            </div>
+    </fieldset>
+</form>
+{% endblock %}
