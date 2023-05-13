@@ -168,7 +168,7 @@ def add_record_to_db(table):
                 flash("Please enter a Valid age - 18+", "danger")
                 error = True
             else:
-                curs.execute("INSERT INTO client(fname, lname, age, email, phone, housenumber, streetname, city, postcode) VALUES (?,?,?,?,?,?,?,?,?,?)", (fname.capitalize(), lname.capitalize(), age, email, phone, housenumber, streetname, city, postcode))
+                curs.execute("INSERT INTO client(fname, lname, age, email, phone, housenumber, streetname, city, postcode) VALUES (?,?,?,?,?,?,?,?,?)", (fname.capitalize(), lname.capitalize(), age, email, phone, housenumber, streetname, city, postcode))
         else:
             jobID = request.form.get('jobID')
             if jobID > max_ids[5]:
